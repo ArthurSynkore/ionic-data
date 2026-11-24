@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ionic Data — L'audit exact de votre entreprise en 7 jours, par l'IA</title>
+<meta name="description" content="Ionic Data se connecte à vos outils pendant 7 jours et vous remet l'audit complet et chiffré de votre entreprise : où le temps et l'argent se perdent, et quoi accélérer en premier.">
+<meta name="theme-color" content="#ECEAE3">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="orb" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="logo" href="#top" aria-label="Ionic Data, retour en haut">
+    <span class="logo-mark" aria-hidden="true"></span><span class="logo-txt">ionic&nbsp;data</span>
+  </a>
+  <div class="top-r">
+    <button class="theme-btn" id="theme-btn" aria-pressed="false" aria-label="Mode sombre" title="Mode sombre"><span></span></button>
+    <a class="btn btn-s" href="#reserver" data-book>Demander mon audit <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<div class="hud" aria-hidden="true">
+  <div class="hud-row"><span class="hud-dot"></span><span id="hud-state">En attente</span><span id="hud-pct">000 %</span></div>
+  <div class="hud-bar"><i id="hud-fill"></i></div>
+  <div class="hud-entry" id="hud-entry" hidden></div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="s hero" data-orb="0.77,0.52,1.1" data-orb-m="0.5,0.21,0.95" data-charge="0,0" data-state="En attente">
+    <div class="hero-in">
+      <p class="label" data-reveal>Audit d'entreprise par IA</p>
+      <h1 data-split>L'audit exact de votre entreprise. <em>En 7 jours.</em></h1>
+      <p class="lead" data-reveal style="--d:5">Où le temps et l'argent se perdent. Et quoi accélérer en premier.</p>
+      <div class="hero-cta" data-reveal style="--d:7">
+        <a class="btn" href="#reserver" data-book>Demander mon audit <span class="arr" aria-hidden="true">→</span></a>
+        <span class="hint">Défilez <span class="hint-arr" aria-hidden="true">↓</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTAT (pinned : le texte se lit au scroll, l'orbe en retrait derrière) -->
+  <section class="s pin constat" data-orb="0.5,0.5,1.3,0.45" data-orb-m="0.5,0.5,1.5,0.4" data-charge="0,0" data-state="En attente" data-pin>
+    <div class="stage">
+      <h2 class="read" data-read>Votre entreprise pourrait aller plus vite.<br class="br-d"> <em>Mais où ça bloque, exactement&nbsp;?</em></h2>
+    </div>
+  </section>
+
+  <!-- 01 CONNEXION (pinned) : le système se branche tout seul sur les outils de l'entreprise -->
+  <section class="s pin connexion" data-orb="0.7,0.5,0.8" data-orb-m="0.5,0.62,0.7" data-charge="0,0.22" data-state="Connexion" data-pin>
+    <div class="stage">
+      <div class="col">
+        <p class="label" data-reveal>01 — Connexion</p>
+        <h2 data-split>Il se branche <em>tout seul.</em></h2>
+        <p class="mono-note" data-reveal style="--d:4"><span id="app-count">0/8</span> outils branchés</p>
+      </div>
+      <div class="apps">
+        <button class="app" style="--x:0.383;--y:-0.924" aria-pressed="true" aria-label="Gmail"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V7l8 6 8-6v11" fill="none" stroke="#EA4335" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M4 18V9" stroke="#4285F4" stroke-width="3" stroke-linecap="round"/><path d="M20 18V9" stroke="#34A853" stroke-width="3" stroke-linecap="round"/></svg><span class="app-n">Gmail</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:0.924;--y:-0.383" aria-pressed="true" aria-label="Agenda"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3" fill="none" stroke="#4285F4" stroke-width="2"/><path d="M3.5 9h17" stroke="#4285F4" stroke-width="2"/><text x="12" y="17.6" text-anchor="middle" font-size="7.5" font-weight="700" font-family="Arial,sans-serif" fill="#4285F4">31</text></svg><span class="app-n">Agenda</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:0.924;--y:0.383" aria-pressed="true" aria-label="Slack"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8.6" width="11" height="3.4" rx="1.7" fill="#36C5F0"/><rect x="12" y="3" width="3.4" height="11" rx="1.7" fill="#2EB67D"/><rect x="10" y="12" width="11" height="3.4" rx="1.7" fill="#ECB22E"/><rect x="8.6" y="10" width="3.4" height="11" rx="1.7" fill="#E01E5A"/></svg><span class="app-n">Slack</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:0.383;--y:0.924" aria-pressed="true" aria-label="Meta"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c-1.8-3-3.3-4.5-5-4.5-2 0-3.5 2.2-3.5 4.8 0 2.2 1.2 3.7 3 3.7 2 0 3.4-1.8 5.5-4s3.5-4.5 5.5-4.5c1.8 0 3 1.8 3 4.3 0 2.4-1.3 4.2-3.2 4.2-1.7 0-3-1.3-5.3-4z" fill="none" stroke="#0081FB" stroke-width="2.3" stroke-linejoin="round"/></svg><span class="app-n">Meta</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:-0.383;--y:0.924" aria-pressed="true" aria-label="HubSpot"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="#FF7A59" stroke-width="2.2" stroke-linecap="round"><circle cx="14.5" cy="14" r="4"/><path d="M14.5 10V6M11.4 11.6L6 7.4M11.8 17l-3.2 2.8"/></g><g fill="#FF7A59"><circle cx="14.5" cy="5" r="1.9"/><circle cx="5.2" cy="6.8" r="1.9"/><circle cx="8" cy="20.2" r="1.6"/></g></svg><span class="app-n">HubSpot</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:-0.924;--y:0.383" aria-pressed="true" aria-label="Notion"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 16V8l6 8V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="app-n">Notion</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:-0.924;--y:-0.383" aria-pressed="true" aria-label="Drive"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 14.5l3 5 6-10.5z" fill="#0F9D58"/><path d="M9 4h6l6 10.5h-6z" fill="#FFC107"/><path d="M6 19.5l3-5h12l-3 5z" fill="#4285F4"/></svg><span class="app-n">Drive</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+        <button class="app" style="--x:-0.383;--y:-0.924" aria-pressed="true" aria-label="Zoom"><span class="app-bar"><i></i><i></i><i></i></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="13" height="10" rx="3" fill="#2D8CFF"/><path d="M16.8 10.6l4.7-3v8.8l-4.7-3z" fill="#2D8CFF"/></svg><span class="app-n">Zoom</span><span class="app-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANCE -->
+  <section class="s trust" data-orb="0.21,0.5,0.72" data-orb-m="0.86,0.87,0.36" data-charge="0.22,0.28" data-state="Périmètre protégé" data-ring>
+    <div class="col col-r">
+      <p class="label" data-reveal>Confiance</p>
+      <h2 data-split>On ne touche pas <em>aux données sensibles.</em></h2>
+      <ol class="pledges">
+        <li data-reveal style="--d:1"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="ico-f" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-s" pathLength="1" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-c" pathLength="1" d="M8.8 12.2l2.3 2.3 4.2-4.6"/></svg><h3>Vos équipes sont prévenues</h3></li>
+        <li data-reveal style="--d:2"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="ico-f" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-s" pathLength="1" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-c" pathLength="1" d="M8.8 12.2l2.3 2.3 4.2-4.6"/></svg><h3>Vous choisissez ce qui est connecté</h3></li>
+        <li data-reveal style="--d:3"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="ico-f" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-s" pathLength="1" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-c" pathLength="1" d="M8.8 12.2l2.3 2.3 4.2-4.6"/></svg><h3>Conforme au RGPD</h3></li>
+        <li data-reveal style="--d:4"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="ico-f" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-s" pathLength="1" d="M12 3l7 2.6v5.6c0 4.4-2.9 8.3-7 9.8-4.1-1.5-7-5.4-7-9.8V5.6L12 3z"/><path class="ico-c" pathLength="1" d="M8.8 12.2l2.3 2.3 4.2-4.6"/></svg><h3>Données supprimées après la mission</h3></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 02 SEPT JOURS (pinned) -->
+  <section class="s pin capture" id="capture" data-orb="0.5,0.5,0.85" data-orb-m="0.5,0.5,0.8" data-charge="0.28,1" data-state="Captation" data-pin>
+    <div class="stage">
+      <div class="cap">
+        <div class="cap-col cap-l">
+          <div class="person" data-i="0">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Devis introuvable ce matin.</b></p>
+          </div>
+          <div class="person" data-i="2">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Trois réunions, une décision.</b></p>
+          </div>
+          <div class="person" data-i="4">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Reporting refait pour rien.</b></p>
+          </div>
+          <div class="person" data-i="6">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Deux heures de relances.</b></p>
+          </div>
+        </div>
+        <div class="cap-col cap-r">
+          <div class="person" data-i="1">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Même commande saisie deux fois.</b></p>
+          </div>
+          <div class="person" data-i="3">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>J'attends une validation depuis mardi.</b></p>
+          </div>
+          <div class="person" data-i="5">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>Le client a relancé avant nous.</b></p>
+          </div>
+          <div class="person" data-i="7">
+            <div class="p-av"><svg class="p-ring" viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="22"/><circle class="pr" pathLength="1" cx="23" cy="23" r="22"/></svg><svg class="p-ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.6-3.9 3.5-6 7.2-6s6.6 2.1 7.2 6"/></svg><span class="p-ok"><svg viewBox="0 0 12 12"><path d="M3 6.2l2.1 2.1L9 4.2"/></svg></span></div>
+            <p class="p-say"><svg class="chrono" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2M12 13.5V9.6"/></svg><b>À changer : la validation des devis.</b></p>
+          </div>
+        </div>
+      </div>
+      <p class="mono-note cap-note"><svg class="chrono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.8h4M12 2.8v3.2"/><path class="hand" d="M12 13.5V9.2"/></svg><span>2 min</span> par jour, par personne</p>
+      <p class="cap-quote" id="cap-quote" aria-hidden="true"></p>
+    </div>
+  </section>
+
+  <!-- 03 RELEASE (pinned) -->
+  <section class="s pin release" id="release" data-orb="0.5,0.5,1" data-orb-m="0.5,0.5,1.3" data-charge="1,1" data-state="Chargé" data-pin>
+    <div class="stage" id="rel-stage">
+      <div class="rel-pre" id="rel-pre">
+        <p class="label">03 — Le rapport</p>
+        <h2>Jour 7. <em>Le système est chargé.</em></h2>
+      </div>
+      <div class="rel-post" id="rel-post">
+        <h2>Tout ce qu'il <em>sait.</em></h2>
+      </div>
+      <!-- roue de données : défile au scroll, la ligne du centre est active -->
+      <ul class="wheel" id="wheel" aria-label="Exemples de données du rapport (illustratives)">
+        <li><b>186&nbsp;k€</b> de frictions par an</li>
+        <li><b>31&nbsp;%</b> du temps hors métier</li>
+        <li><b>4,2&nbsp;jours</b> pour valider un devis</li>
+        <li><b>38&nbsp;%</b> de réunions sans décision</li>
+        <li><b>2&nbsp;saisies</b> pour chaque commande</li>
+        <li><b>17&nbsp;%</b> du temps en relances</li>
+        <li><b>3&nbsp;leviers</b> pour 76&nbsp;% du gain</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RAPPORT -->
+  <section class="s report" id="rapport" data-orb="0.5,0.5,1" data-orb-m="0.5,0.5,1.3" data-charge="1,1" data-state="Rapport généré">
+    <div class="report-head">
+      <h2 data-split>Un rapport à <em>appliquer lundi.</em></h2>
+    </div>
+
+    <article class="paper" data-reveal>
+      <header class="paper-top">
+        <h3>Rapport d'audit</h3>
+        <p class="label">Exemple · données illustratives</p>
+      </header>
+
+      <div class="kpis">
+        <div><span class="k" data-count="186" data-suffix="&nbsp;k€">186&nbsp;k€</span><p>de frictions par an</p></div>
+        <div><span class="k" data-count="31" data-suffix="&nbsp;%">31&nbsp;%</span><p>du temps hors cœur de métier</p></div>
+        <div><span class="k" data-count="4.2" data-dec="1" data-suffix="&nbsp;j">4,2&nbsp;j</span><p>pour valider un devis</p></div>
+      </div>
+
+      <div class="paper-grid">
+        <div>
+          <p class="label">Où part le temps</p>
+          <ul class="bars">
+            <li><span>Cœur de métier</span><div class="bar"><i style="--v:100"></i></div><b>44&nbsp;%</b></li>
+            <li><span>Réunions</span><div class="bar"><i style="--v:43"></i></div><b>19&nbsp;%</b></li>
+            <li><span>Emails, relances</span><div class="bar"><i style="--v:39"></i></div><b>17&nbsp;%</b></li>
+            <li><span>Saisie</span><div class="bar"><i style="--v:27"></i></div><b>12&nbsp;%</b></li>
+            <li><span>Attente</span><div class="bar"><i style="--v:18"></i></div><b>8&nbsp;%</b></li>
+          </ul>
+        </div>
+        <div class="levers">
+          <p class="label">Plan d'action</p>
+          <div class="lever"><span class="n">01</span><h4>Déléguer la validation des devis</h4><span class="gain">62&nbsp;k€</span></div>
+          <div class="lever"><span class="n">02</span><h4>Alimenter le CRM depuis les emails</h4><span class="gain">48&nbsp;k€</span></div>
+          <div class="lever"><span class="n">03</span><h4>Refondre le rituel de réunions</h4><span class="gain">31&nbsp;k€</span></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- CTA -->
+  <section class="s cta" id="reserver" data-orb="0.5,0.5,1.25,0.22" data-orb-m="0.5,0.5,1.5,0.2" data-charge="1,1" data-state="Prêt" data-mode="cta">
+    <h2 data-split>Sachez où <em>accélérer.</em></h2>
+    <p class="body" data-reveal style="--d:3">Puis Hyperdrive construit ce que l'audit révèle.</p>
+    <a class="btn btn-l" href="#reserver" data-book data-reveal style="--d:5">Réserver un appel <span class="arr" aria-hidden="true">→</span></a>
+    <footer class="foot-bar">
+      <span>© 2026 Ionic Data</span>
+      <span>La porte d'entrée de Hyperdrive</span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
