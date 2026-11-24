@@ -454,7 +454,7 @@ html[data-theme="green"] .p-say{background:rgba(46,240,138,.14);color:var(--ink)
   .app-n{font-size:8px}
 }
 /* ---------- v10 : « tout ce qu'il sait » — roue de données pilotée par le scroll ---------- */
-.release{height:560vh}
+.release{height:100vh;height:100svh}
 .release .stage{display:block}
 .rel-post{position:absolute;top:92px;left:0;right:0;margin:0;padding:0 var(--pad)}
 .rel-post h2{font-size:clamp(30px,3.4vw,56px)}

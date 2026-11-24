@@ -153,6 +153,15 @@
   people.forEach(p => p.el.classList.toggle('quick', p.i >= 3));
   const relEl = $('#release'), relStage = $('#rel-stage'), relPre = $('#rel-pre'), relPost = $('#rel-post');
   const wheel = $('#wheel'), wl = $$('#wheel li'); let wheelKey = -1;
+  // séquence « vidéo » : explosion (0 → 0,68) puis roue de données, une ligne toutes les REL_STEP s
+  const REL_K = 2, REL_INTRO = 2.8, REL_STEP = 0.72, REL_HOLD = 0.8;
+  const REL_WHEEL = (wl.length - 1) * REL_STEP, REL_TOTAL = REL_INTRO + REL_WHEEL + REL_HOLD;
+  const relTimeline = s => s < REL_INTRO ? 0.68 * s / REL_INTRO : Math.min(REL_K, 0.68 + (REL_K - 0.74) * (s - REL_INTRO) / REL_WHEEL);
+  let relState = 'idle', relT0 = 0, locked = false;
+  const block = e => { if (locked) e.preventDefault(); };
+  window.addEventListener('wheel', block, { passive: false });
+  window.addEventListener('touchmove', block, { passive: false });
+  window.addEventListener('keydown', e => { if (locked && [' ', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'].includes(e.key)) e.preventDefault(); });
   const shards = $$('.shard').map(el => ({ el, hx: 0, hy: 0, c: -1 }));
   const hudState = $('#hud-state'), hudPct = $('#hud-pct'), hudFill = $('#hud-fill'), hudEntry = $('#hud-entry');
 
@@ -257,6 +266,7 @@
     const sy = window.scrollY, vel = Math.abs(sy - lastY); lastY = sy;
     slosh = lerp(slosh, Math.min(vel, 60) / 60, 0.12);
     // tant que tous les retours ne sont pas arrivés, on ne sort pas de la section « sept jours » (la scène reste épinglée)
+    const prevSy = gatePrev;
     if (!reduced && spoke < 8 && now > noGateUntil) {
       const ce = sections[capIdx].el, top = ce.offsetTop, lim = top + ce.offsetHeight - H;
       if (sy > lim && gatePrev <= lim + 1 && gatePrev >= top - H) window.scrollTo({ top: lim, behavior: 'instant' });
@@ -273,8 +283,17 @@
     const prog = clamp((mid - curR.top) / curR.height);
     const pinP = cur.pin ? clamp(-curR.top / Math.max(1, curR.height - H)) : prog;
     const rr = relEl.getBoundingClientRect();
-    // la première partie du blocage (2,6 écrans) joue l'explosion, le reste fait tourner la roue de données
-    const relK = Math.max(1, (rr.height - H) / (2.6 * H)), relX = clamp(-rr.top / Math.max(1, rr.height - H)) * relK, relP = clamp(relX);
+    // « Jour 7 » se joue comme une vidéo : la page se fige en haut de la section, la séquence défile toute seule, puis le scroll reprend
+    const relTop = relEl.offsetTop;
+    if (relState === 'idle' && sy >= relTop - 1) {
+      if (!reduced && now > noGateUntil && prevSy < relTop - 1) { relState = 'play'; relT0 = now; locked = true; }
+      else relState = 'done';
+    }
+    if (relState === 'play') {
+      if (Math.abs(window.scrollY - relTop) > 1) window.scrollTo({ top: relTop, behavior: 'instant' });
+      if ((now - relT0) / 1000 >= REL_TOTAL) { relState = 'done'; locked = false; }
+    }
+    const relX = relState === 'idle' ? 0 : relState === 'done' ? REL_K : relTimeline((now - relT0) / 1000), relK = REL_K, relP = clamp(relX);
 
     // cibles
     const o = mobile ? cur.m : cur.d;
@@ -341,7 +360,7 @@
     }
 
     // release : textes + cartes
-    relPre.style.opacity = (smooth(-0.02, 0.06, relP + (rr.top < H * 0.4 ? 0.06 : 0)) * (1 - smooth(0.26, 0.35, relP))).toFixed(3);
+    relPre.style.opacity = (relState === 'idle' ? 0 : smooth(0, 0.06, relP) * (1 - smooth(0.26, 0.35, relP))).toFixed(3);
     relPost.style.opacity = smooth(0.52, 0.68, relP).toFixed(3);
     {
       // cran : la roue marque un temps d'arrêt sur chaque ligne avant de passer à la suivante
